@@ -79,7 +79,7 @@ namespace VKProfiler
 
         public ProfileData GetProfileData(string id)
         {
-            var request = BuildRequest(id, new string[] { "counters", "bdate", "sex", "city", "photo_200", "status" });
+            var request = BuildRequest(id, new string[] { "counters", "bdate", "sex", "city", "photo_200", "status", });
             ProfileData result;
             JObject response;
             Bitmap photo;
@@ -99,6 +99,12 @@ namespace VKProfiler
             if (response.ContainsKey("error") || !(response["response"] as JArray).HasValues)
                 return null;
             var pData = response["response"][0] as JObject;
+            var deactivated = pData.ContainsKey("deactivated");
+            bool isClosed;
+            if (pData.ContainsKey("is_closed"))
+                isClosed = pData["is_closed"].ToString() == "True";
+            else 
+                isClosed = false;
             var name = pData["first_name"].ToString() + " " + pData["last_name"].ToString();
             string birthday;
             if (pData.ContainsKey("bdate"))
@@ -131,13 +137,13 @@ namespace VKProfiler
             var pc = pData["counters"];
                 var counters = new ProfileCounters
                     (
-                        pc["friends"] != null ? pc["friends"].ToString() : "-",
-                        pc["followers"] != null ? pc["followers"].ToString() : "-",
-                        pc["photos"] != null ? pc["photos"].ToString() : "-",
-                        pc["videos"] != null ? pc["videos"].ToString() : "-",
-                        pc["audios"] != null ? pc["audios"].ToString() : "-"
+                        pc!= null && pc["friends"] != null ? pc["friends"].ToString() : "-",
+                        pc != null && pc["followers"] != null ? pc["followers"].ToString() : "-",
+                        pc != null && pc["photos"] != null ? pc["photos"].ToString() : "-",
+                        pc != null && pc["videos"] != null ? pc["videos"].ToString() : "-",
+                        pc != null && pc["audios"] != null ? pc["audios"].ToString() : "-"
                     );
-                result = new ProfileData(name, counters, birthday, sex, city, photo, status);
+                result = new ProfileData(name, isClosed, deactivated,  counters, birthday, sex, city, photo, status);
             return result;
         }
     }
@@ -145,6 +151,8 @@ namespace VKProfiler
     class ProfileData
     {
         public string Name { get; }
+        public bool IsClosed { get; }
+        public bool Deactiavated { get; }
         public ProfileCounters Counters { get; }
         public string Birthday { get; }
         public string Sex { get; }
@@ -152,7 +160,7 @@ namespace VKProfiler
         public Bitmap Avatar { get; }
         public string Status { get; }
 
-        public ProfileData(string name, ProfileCounters counters, string birthday, string sex, string city, Bitmap avatar, string status)
+        public ProfileData(string name, bool isClosed, bool deactivated, ProfileCounters counters, string birthday, string sex, string city, Bitmap avatar, string status)
         {
             Name = name;
             Counters = counters;
@@ -161,6 +169,8 @@ namespace VKProfiler
             City = city;
             Avatar = avatar;
             Status = status;
+            IsClosed = isClosed;
+            Deactiavated = deactivated;
         }
     }
 

@@ -50,6 +50,7 @@
             this.profilerButton = new System.Windows.Forms.Button();
             this.sexLabel = new System.Windows.Forms.Label();
             this.selfProfilerButton = new System.Windows.Forms.Button();
+            this.deactivatedOrClosedLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.avatarPictureBox)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -310,11 +311,22 @@
             this.selfProfilerButton.UseVisualStyleBackColor = true;
             this.selfProfilerButton.Click += new System.EventHandler(this.selfProfilerButton_Click);
             // 
+            // deactivatedOrClosedLabel
+            // 
+            this.deactivatedOrClosedLabel.AutoSize = true;
+            this.deactivatedOrClosedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deactivatedOrClosedLabel.ForeColor = System.Drawing.Color.Red;
+            this.deactivatedOrClosedLabel.Location = new System.Drawing.Point(30, 265);
+            this.deactivatedOrClosedLabel.Name = "deactivatedOrClosedLabel";
+            this.deactivatedOrClosedLabel.Size = new System.Drawing.Size(0, 15);
+            this.deactivatedOrClosedLabel.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 485);
+            this.Controls.Add(this.deactivatedOrClosedLabel);
             this.Controls.Add(this.selfProfilerButton);
             this.Controls.Add(this.sexLabel);
             this.Controls.Add(this.profilerButton);
@@ -360,6 +372,7 @@
         private System.Windows.Forms.Button profilerButton;
         private System.Windows.Forms.Label sexLabel;
         private System.Windows.Forms.Button selfProfilerButton;
+        private System.Windows.Forms.Label deactivatedOrClosedLabel;
     }
 }
 

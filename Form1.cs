@@ -117,6 +117,15 @@ namespace VKProfiler
             photoCountLabel.Text = profileData.Counters.PhotoCount;
             videoCountLabel.Text = profileData.Counters.VideoCount;
             audioCountLabel.Text = profileData.Counters.AudioCount;
+            if (profileData.IsClosed || profileData.Deactiavated) 
+            {
+                if (profileData.IsClosed)
+                    deactivatedOrClosedLabel.Text = "Это закрытый профиль";
+                if (profileData.Deactiavated)
+                    deactivatedOrClosedLabel.Text = "Этот профиль был заблокирован или удалён"; 
+            }
+            else
+                deactivatedOrClosedLabel.Text = "";
             tableLayoutPanel1.Show();
         }
     }
