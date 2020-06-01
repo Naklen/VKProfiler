@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+using System.Drawing;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace VKProfiler
 {
@@ -15,6 +10,7 @@ namespace VKProfiler
         const string appID = "7492656";
         public string Token { get; private set; }
         public string UserName { get; private set; }
+        public string UserID { get; private set; }
         public bool Autorized { get; private set; } = false;
 
         public void Autorize(Form2 f)
@@ -22,7 +18,8 @@ namespace VKProfiler
             Token = "";
             var res = GetToken(f).Split(new char[] { '=', '&' });
             Token = res[1];
-            UserName = GetUserName(res[5]);
+            UserID = res[5];
+            UserName = GetUserName(UserID);
             Autorized = true;
         }
 
@@ -78,6 +75,110 @@ namespace VKProfiler
             sb.Append(Token);
             sb.Append("&v=5.107");
             return sb.ToString();
+        }
+
+        public ProfileData GetProfileData(string id)
+        {
+            var request = BuildRequest(id, new string[] { "counters", "bdate", "sex", "city", "photo_200", "status" });
+            ProfileData result;
+            JObject response;
+            Bitmap photo;
+            using (var wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                response = JObject.Parse(wc.DownloadString(request));
+                if (response.ContainsKey("error") || !(response["response"] as JArray).HasValues)
+                {
+                    wc.Dispose();
+                    return null;
+                }
+                else
+                    photo = new Bitmap(wc.OpenRead(response["response"][0]["photo_200"].ToString())); 
+
+            }
+            if (response.ContainsKey("error") || !(response["response"] as JArray).HasValues)
+                return null;
+            var pData = response["response"][0] as JObject;
+            var name = pData["first_name"].ToString() + " " + pData["last_name"].ToString();
+            string birthday;
+            if (pData.ContainsKey("bdate"))
+                birthday = "День рождения: " + pData["bdate"].ToString();
+            else
+                birthday = "День рождения не указан";
+            string sex;
+            switch (pData["sex"].ToString())
+            {
+                case "1":
+                    sex = "Пол: женский";
+                    break;
+                case "2":
+                    sex = "Пол: мужской";
+                    break;
+                default:
+                    sex = "Пол не указан";
+                    break;
+            }
+            string city;
+            if (pData.ContainsKey("city"))
+                city = "Город: " + pData["city"]["title"];
+            else
+                city = "Город не указан";
+            string status;
+            if (pData.ContainsKey("status"))
+                status = "Статус: \"" + pData["status"] + "\"";
+            else
+                status = "Статус не указан";
+            var pc = pData["counters"];
+                var counters = new ProfileCounters
+                    (
+                        pc["friends"] != null ? pc["friends"].ToString() : "-",
+                        pc["followers"] != null ? pc["followers"].ToString() : "-",
+                        pc["photos"] != null ? pc["photos"].ToString() : "-",
+                        pc["videos"] != null ? pc["videos"].ToString() : "-",
+                        pc["audios"] != null ? pc["audios"].ToString() : "-"
+                    );
+                result = new ProfileData(name, counters, birthday, sex, city, photo, status);
+            return result;
+        }
+    }
+
+    class ProfileData
+    {
+        public string Name { get; }
+        public ProfileCounters Counters { get; }
+        public string Birthday { get; }
+        public string Sex { get; }
+        public string City { get; }
+        public Bitmap Avatar { get; }
+        public string Status { get; }
+
+        public ProfileData(string name, ProfileCounters counters, string birthday, string sex, string city, Bitmap avatar, string status)
+        {
+            Name = name;
+            Counters = counters;
+            Birthday = birthday;
+            Sex = sex;
+            City = city;
+            Avatar = avatar;
+            Status = status;
+        }
+    }
+
+    class ProfileCounters
+    {
+        public string FriendsCount { get; }
+        public string FollowersCount { get; }
+        public string PhotoCount { get; }
+        public string VideoCount { get; }
+        public string AudioCount { get; }
+
+        public ProfileCounters(string friends, string followers, string photo, string video, string audio)
+        {
+            FriendsCount = friends;
+            FollowersCount = followers;
+            PhotoCount = photo;
+            VideoCount = video;
+            AudioCount = audio;
         }
     }
 }
