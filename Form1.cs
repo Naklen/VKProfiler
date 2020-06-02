@@ -127,6 +127,7 @@ namespace VKProfiler
             }
             else
                 deactivatedOrClosedLabel.Text = "";
+            isFriendLabel.Text = profileData.IsFriend ? "Этот профиль является вашим другом" : "";
             tableLayoutPanel1.Show();
         }
 
@@ -144,6 +145,7 @@ namespace VKProfiler
             tableLayoutPanel1.Location = new Point(avatarPictureBox.Location.X + 229, tableLayoutPanel1.Location.Y);
             deactivatedOrClosedLabel.Location = new Point(avatarPictureBox.Location.X + 3, deactivatedOrClosedLabel.Location.Y);
             nameLabel.Location = new Point(avatarPictureBox.Location.X + 224, nameLabel.Location.Y);
+            isFriendLabel.Location = new Point(avatarPictureBox.Location.X + 3, isFriendLabel.Location.Y);
         }
     }
 }

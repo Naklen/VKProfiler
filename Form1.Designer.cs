@@ -51,6 +51,7 @@
             this.sexLabel = new System.Windows.Forms.Label();
             this.selfProfilerButton = new System.Windows.Forms.Button();
             this.deactivatedOrClosedLabel = new System.Windows.Forms.Label();
+            this.isFriendLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.avatarPictureBox)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -322,11 +323,22 @@
             this.deactivatedOrClosedLabel.Size = new System.Drawing.Size(0, 15);
             this.deactivatedOrClosedLabel.TabIndex = 13;
             // 
+            // isFriendLabel
+            // 
+            this.isFriendLabel.AutoSize = true;
+            this.isFriendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.isFriendLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.isFriendLabel.Location = new System.Drawing.Point(33, 290);
+            this.isFriendLabel.Name = "isFriendLabel";
+            this.isFriendLabel.Size = new System.Drawing.Size(0, 13);
+            this.isFriendLabel.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 485);
+            this.Controls.Add(this.isFriendLabel);
             this.Controls.Add(this.deactivatedOrClosedLabel);
             this.Controls.Add(this.selfProfilerButton);
             this.Controls.Add(this.sexLabel);
@@ -375,6 +387,7 @@
         private System.Windows.Forms.Label sexLabel;
         private System.Windows.Forms.Button selfProfilerButton;
         private System.Windows.Forms.Label deactivatedOrClosedLabel;
+        private System.Windows.Forms.Label isFriendLabel;
     }
 }
 

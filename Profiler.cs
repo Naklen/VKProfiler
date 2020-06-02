@@ -79,7 +79,7 @@ namespace VKProfiler
 
         public ProfileData GetProfileData(string id)
         {
-            var request = BuildRequest(id, new string[] { "counters", "bdate", "sex", "city", "photo_200", "status", });
+            var request = BuildRequest(id, new string[] { "counters", "bdate", "sex", "city", "photo_200", "status", "is_friend" });
             ProfileData result;
             JObject response;
             Bitmap photo;
@@ -105,6 +105,11 @@ namespace VKProfiler
                 isClosed = pData["is_closed"].ToString() == "True";
             else 
                 isClosed = false;
+            bool isFriend;
+            if (pData.ContainsKey("is_friend"))
+                isFriend = pData["is_friend"].ToString() == "1";
+            else
+                isFriend = false;
             var name = pData["first_name"].ToString() + " " + pData["last_name"].ToString();
             string birthday;
             if (pData.ContainsKey("bdate"))
@@ -143,7 +148,7 @@ namespace VKProfiler
                         pc != null && pc["videos"] != null ? pc["videos"].ToString() : "-",
                         pc != null && pc["audios"] != null ? pc["audios"].ToString() : "-"
                     );
-                result = new ProfileData(name, isClosed, deactivated,  counters, birthday, sex, city, photo, status);
+                result = new ProfileData(name, isClosed, deactivated,  counters, birthday, sex, city, photo, status, isFriend);
             return result;
         }
     }
@@ -159,8 +164,9 @@ namespace VKProfiler
         public string City { get; }
         public Bitmap Avatar { get; }
         public string Status { get; }
+        public bool IsFriend { get; }
 
-        public ProfileData(string name, bool isClosed, bool deactivated, ProfileCounters counters, string birthday, string sex, string city, Bitmap avatar, string status)
+        public ProfileData(string name, bool isClosed, bool deactivated, ProfileCounters counters, string birthday, string sex, string city, Bitmap avatar, string status, bool isFriend)
         {
             Name = name;
             Counters = counters;
@@ -171,6 +177,7 @@ namespace VKProfiler
             Status = status;
             IsClosed = isClosed;
             Deactiavated = deactivated;
+            IsFriend = isFriend;
         }
     }
 
