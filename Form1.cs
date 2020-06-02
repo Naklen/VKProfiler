@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -146,6 +147,27 @@ namespace VKProfiler
             deactivatedOrClosedLabel.Location = new Point(avatarPictureBox.Location.X + 3, deactivatedOrClosedLabel.Location.Y);
             nameLabel.Location = new Point(avatarPictureBox.Location.X + 224, nameLabel.Location.Y);
             isFriendLabel.Location = new Point(avatarPictureBox.Location.X + 3, isFriendLabel.Location.Y);
+        }
+
+        private void clearIEDataButton_Click(object sender, EventArgs e)
+        {
+            var dialogResult = MessageBox.Show("Вы уверены?", "Внимание!", MessageBoxButtons.YesNo,
+                   MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Process pr = Process.Start(new ProcessStartInfo()
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/c RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 255",
+                    UseShellExecute = false,
+                    CreateNoWindow = true                    
+                });
+            }
+        }
+
+        private void helpClearCacheButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Эта кнопка удалит все данные браузера Internet Explorer, который использовался для авторизации Вконтакте");
         }
     }
 }

@@ -52,6 +52,8 @@
             this.selfProfilerButton = new System.Windows.Forms.Button();
             this.deactivatedOrClosedLabel = new System.Windows.Forms.Label();
             this.isFriendLabel = new System.Windows.Forms.Label();
+            this.clearIECacheButton = new System.Windows.Forms.Button();
+            this.helpClearCacheButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.avatarPictureBox)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -333,11 +335,39 @@
             this.isFriendLabel.Size = new System.Drawing.Size(0, 13);
             this.isFriendLabel.TabIndex = 14;
             // 
+            // clearIECacheButton
+            // 
+            this.clearIECacheButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearIECacheButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.clearIECacheButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearIECacheButton.Location = new System.Drawing.Point(608, 130);
+            this.clearIECacheButton.Name = "clearIECacheButton";
+            this.clearIECacheButton.Size = new System.Drawing.Size(132, 43);
+            this.clearIECacheButton.TabIndex = 15;
+            this.clearIECacheButton.Text = "Очистить кэш IE";
+            this.clearIECacheButton.UseVisualStyleBackColor = true;
+            this.clearIECacheButton.Click += new System.EventHandler(this.clearIEDataButton_Click);
+            // 
+            // helpClearCacheButton
+            // 
+            this.helpClearCacheButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpClearCacheButton.FlatAppearance.BorderSize = 0;
+            this.helpClearCacheButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpClearCacheButton.Image = ((System.Drawing.Image)(resources.GetObject("helpClearCacheButton.Image")));
+            this.helpClearCacheButton.Location = new System.Drawing.Point(747, 131);
+            this.helpClearCacheButton.Name = "helpClearCacheButton";
+            this.helpClearCacheButton.Size = new System.Drawing.Size(49, 43);
+            this.helpClearCacheButton.TabIndex = 16;
+            this.helpClearCacheButton.UseVisualStyleBackColor = true;
+            this.helpClearCacheButton.Click += new System.EventHandler(this.helpClearCacheButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 485);
+            this.Controls.Add(this.helpClearCacheButton);
+            this.Controls.Add(this.clearIECacheButton);
             this.Controls.Add(this.isFriendLabel);
             this.Controls.Add(this.deactivatedOrClosedLabel);
             this.Controls.Add(this.selfProfilerButton);
@@ -388,6 +418,8 @@
         private System.Windows.Forms.Button selfProfilerButton;
         private System.Windows.Forms.Label deactivatedOrClosedLabel;
         private System.Windows.Forms.Label isFriendLabel;
+        private System.Windows.Forms.Button clearIECacheButton;
+        private System.Windows.Forms.Button helpClearCacheButton;
     }
 }
 
