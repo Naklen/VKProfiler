@@ -18,11 +18,12 @@ namespace VKProfiler
             textBox1.Text = prompt;
             textBox1.ForeColor = SystemColors.WindowFrame;
             tableLayoutPanel1.Hide();
+            MinimumSize = new Size(740, 520);
         }
 
         private void autorisationButton_Click(object sender, EventArgs e)
         {
-            if (profiler.Autorized)
+            if (profiler.Authorised)
             {
                 var dialogResult = MessageBox.Show("Вы уже авторизованы\nХотите снова пройти авторизацию?", "Внимание!", MessageBoxButtons.YesNo,
                    MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
@@ -37,7 +38,7 @@ namespace VKProfiler
         {
             var f = new Form2(profiler.GetAutorizeURL());
             f.Show();
-            await Task.Run(() => profiler.Autorize(f));
+            await Task.Run(() => profiler.Authorise(f));
             autorisationButton.Text = "Вы вошли как " + profiler.UserName;
         }
 
@@ -96,7 +97,7 @@ namespace VKProfiler
         {
             if (profileData == null)
             {
-                if (!profiler.Autorized) 
+                if (!profiler.Authorised) 
                 {
                     MessageBox.Show("Вы не авторизованы\nПожалуйса, пройдите авторизацию", "Внимание!", MessageBoxButtons.OK,
                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
@@ -127,6 +128,22 @@ namespace VKProfiler
             else
                 deactivatedOrClosedLabel.Text = "";
             tableLayoutPanel1.Show();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            textBox1.Size = new Size(Size.Width - 256 - textBox1.Location.X, textBox1.Size.Height);
+            if (avatarPictureBox.Location.X + 385d > (Size.Width / 2))
+                avatarPictureBox.Location = new Point((Size.Width / 2) - 385, avatarPictureBox.Location.Y);
+            if (avatarPictureBox.Location.X < textBox1.Location.X)
+                avatarPictureBox.Location = new Point(textBox1.Location.X, avatarPictureBox.Location.Y);
+            statusLabel.Location = new Point(avatarPictureBox.Location.X + 229, statusLabel.Location.Y);
+            sexLabel.Location = new Point(avatarPictureBox.Location.X + 228, sexLabel.Location.Y);
+            cityLabel.Location = new Point(avatarPictureBox.Location.X + 226, cityLabel.Location.Y);
+            birthdayLabel.Location = new Point(avatarPictureBox.Location.X + 226, birthdayLabel.Location.Y);
+            tableLayoutPanel1.Location = new Point(avatarPictureBox.Location.X + 229, tableLayoutPanel1.Location.Y);
+            deactivatedOrClosedLabel.Location = new Point(avatarPictureBox.Location.X + 3, deactivatedOrClosedLabel.Location.Y);
+            nameLabel.Location = new Point(avatarPictureBox.Location.X + 224, nameLabel.Location.Y);
         }
     }
 }

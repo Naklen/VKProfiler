@@ -52,7 +52,7 @@ namespace VKProfiler
             this.Controls.Add(this.webBrowser1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
-            this.Text = "Autorization";
+            this.Text = "Authorisation";
             this.ResumeLayout(false);
 
         }

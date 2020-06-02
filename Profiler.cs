@@ -11,16 +11,16 @@ namespace VKProfiler
         public string Token { get; private set; }
         public string UserName { get; private set; }
         public string UserID { get; private set; }
-        public bool Autorized { get; private set; } = false;
+        public bool Authorised { get; private set; } = false;
 
-        public void Autorize(Form2 f)
+        public void Authorise(Form2 f)
         {
             Token = "";
             var res = GetToken(f).Split(new char[] { '=', '&' });
             Token = res[1];
             UserID = res[5];
             UserName = GetUserName(UserID);
-            Autorized = true;
+            Authorised = true;
         }
 
         string GetToken(Form2 f)
@@ -131,7 +131,7 @@ namespace VKProfiler
                 city = "Город не указан";
             string status;
             if (pData.ContainsKey("status"))
-                status = "Статус: \"" + pData["status"] + "\"";
+                status = pData["status"].ToString() != "" ? "Статус: \"" + pData["status"].ToString() + "\"" : "Статус не указан";
             else
                 status = "Статус не указан";
             var pc = pData["counters"];

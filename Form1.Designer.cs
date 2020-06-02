@@ -302,6 +302,7 @@
             // 
             // selfProfilerButton
             // 
+            this.selfProfilerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.selfProfilerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selfProfilerButton.Location = new System.Drawing.Point(608, 94);
             this.selfProfilerButton.Name = "selfProfilerButton";
@@ -316,7 +317,7 @@
             this.deactivatedOrClosedLabel.AutoSize = true;
             this.deactivatedOrClosedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.deactivatedOrClosedLabel.ForeColor = System.Drawing.Color.Red;
-            this.deactivatedOrClosedLabel.Location = new System.Drawing.Point(30, 265);
+            this.deactivatedOrClosedLabel.Location = new System.Drawing.Point(33, 265);
             this.deactivatedOrClosedLabel.Name = "deactivatedOrClosedLabel";
             this.deactivatedOrClosedLabel.Size = new System.Drawing.Size(0, 15);
             this.deactivatedOrClosedLabel.TabIndex = 13;
@@ -341,6 +342,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "VKProfiler";
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.avatarPictureBox)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
