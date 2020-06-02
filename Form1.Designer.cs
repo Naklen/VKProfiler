@@ -285,9 +285,9 @@
             this.profilerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.profilerButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.profilerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.profilerButton.Location = new System.Drawing.Point(608, 50);
+            this.profilerButton.Location = new System.Drawing.Point(608, 43);
             this.profilerButton.Name = "profilerButton";
-            this.profilerButton.Size = new System.Drawing.Size(188, 37);
+            this.profilerButton.Size = new System.Drawing.Size(188, 44);
             this.profilerButton.TabIndex = 9;
             this.profilerButton.Text = "Показать профиль";
             this.profilerButton.UseVisualStyleBackColor = true;
@@ -307,9 +307,9 @@
             // 
             this.selfProfilerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.selfProfilerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selfProfilerButton.Location = new System.Drawing.Point(608, 94);
+            this.selfProfilerButton.Location = new System.Drawing.Point(608, 93);
             this.selfProfilerButton.Name = "selfProfilerButton";
-            this.selfProfilerButton.Size = new System.Drawing.Size(188, 30);
+            this.selfProfilerButton.Size = new System.Drawing.Size(188, 31);
             this.selfProfilerButton.TabIndex = 11;
             this.selfProfilerButton.Text = "Показать свой профиль";
             this.selfProfilerButton.UseVisualStyleBackColor = true;
@@ -340,7 +340,7 @@
             this.clearIECacheButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.clearIECacheButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.clearIECacheButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearIECacheButton.Location = new System.Drawing.Point(608, 130);
+            this.clearIECacheButton.Location = new System.Drawing.Point(609, 130);
             this.clearIECacheButton.Name = "clearIECacheButton";
             this.clearIECacheButton.Size = new System.Drawing.Size(132, 43);
             this.clearIECacheButton.TabIndex = 15;
