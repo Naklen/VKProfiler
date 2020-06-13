@@ -42,7 +42,7 @@ namespace VKProfiler
             var sb = new StringBuilder();
             sb.Append("https://oauth.vk.com/authorize?client_id=");
             sb.Append(appID);
-            sb.Append("&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.107&state=123456");
+            sb.Append("&display=page&redirect_uri=https://oauth.vk.com/blank.html&response_type=token&v=5.107&state=123456");
             return sb.ToString();
         }
 
