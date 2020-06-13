@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace VKProfiler
     {
         Profiler profiler = new Profiler();
         const string prompt = "Введите VkID";
+        string currentStatus = "";
 
         public Form1()
         {
@@ -19,6 +21,7 @@ namespace VKProfiler
             textBox1.Text = prompt;
             textBox1.ForeColor = SystemColors.WindowFrame;
             tableLayoutPanel1.Hide();
+            toolTip1.SetToolTip(statusLabel, "1234");
             MinimumSize = new Size(740, 520);
         }
 
@@ -110,7 +113,11 @@ namespace VKProfiler
             }
             nameLabel.Text = profileData.Name;
             sexLabel.Text = profileData.Sex;
-            statusLabel.Text = profileData.Status;
+            if (profileData.Status.Length > 44)
+                statusLabel.Text = profileData.Status.Substring(0, 40) + "...\"";
+            else
+                statusLabel.Text = profileData.Status;
+            currentStatus = profileData.Status.Substring(9, profileData.Status.Length - 10);
             cityLabel.Text = profileData.City;
             birthdayLabel.Text = profileData.Birthday;
             avatarPictureBox.Image = profileData.Avatar;
@@ -168,6 +175,11 @@ namespace VKProfiler
         private void helpClearCacheButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Эта кнопка удалит все данные браузера Internet Explorer, который использовался для авторизации Вконтакте");
+        }
+
+        private void statusLabel_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(statusLabel, currentStatus);
         }
     }
 }

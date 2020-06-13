@@ -20,10 +20,12 @@ namespace VKProfiler
             Token = res[1];
             UserID = res[5];
             UserName = GetUserName(UserID);
+            #if !DEBUG
             using (var wc = new WebClient())
             {
                 wc.DownloadString("https://api.vk.com/method/stats.trackVisitor?access_token=" + Token + "&v=5.110");
             }
+            #endif
             Authorised = true;
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.autorisationButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -54,6 +55,7 @@
             this.isFriendLabel = new System.Windows.Forms.Label();
             this.clearIECacheButton = new System.Windows.Forms.Button();
             this.helpClearCacheButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.avatarPictureBox)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +109,7 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(0, 13);
             this.statusLabel.TabIndex = 5;
+            this.statusLabel.MouseHover += new System.EventHandler(this.statusLabel_MouseHover);
             // 
             // birthdayLabel
             // 
@@ -420,6 +423,7 @@
         private System.Windows.Forms.Label isFriendLabel;
         private System.Windows.Forms.Button clearIECacheButton;
         private System.Windows.Forms.Button helpClearCacheButton;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
