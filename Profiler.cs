@@ -20,6 +20,10 @@ namespace VKProfiler
             Token = res[1];
             UserID = res[5];
             UserName = GetUserName(UserID);
+            using (var wc = new WebClient())
+            {
+                wc.DownloadString("https://api.vk.com/method/stats.trackVisitor?access_token=" + Token + "&v=5.110");
+            }
             Authorised = true;
         }
 
@@ -31,7 +35,7 @@ namespace VKProfiler
             return res;
         }
 
-        public string GetAutorizeURL()
+        public string GetAuthoriseURL()
         {
             var sb = new StringBuilder();
             sb.Append("https://oauth.vk.com/authorize?client_id=");
@@ -93,8 +97,7 @@ namespace VKProfiler
                     return null;
                 }
                 else
-                    photo = new Bitmap(wc.OpenRead(response["response"][0]["photo_200"].ToString())); 
-
+                    photo = new Bitmap(wc.OpenRead(response["response"][0]["photo_200"].ToString()));
             }
             if (response.ContainsKey("error") || !(response["response"] as JArray).HasValues)
                 return null;

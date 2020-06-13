@@ -37,7 +37,7 @@ namespace VKProfiler
 
         async void StartAutorisation() 
         {
-            var f = new Form2(profiler.GetAutorizeURL());
+            var f = new Form2(profiler.GetAuthoriseURL());
             f.Show();
             await Task.Run(() => profiler.Authorise(f));
             autorisationButton.Text = "Вы вошли как " + profiler.UserName;
